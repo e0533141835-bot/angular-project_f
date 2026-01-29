@@ -1,0 +1,69 @@
+<div class="page-container">
+
+  <header class="teams-header">
+    <h1>My Teams 🏢</h1>
+    <button (click)="toggleCreate()" class="action-btn">
+      @if (isCreateOpen()) { Close ✖ } @else { New Team ➕ }
+    </button>
+  </header>
+
+  @if (isCreateOpen()) {
+  <div class="create-team-box slide-in">
+    <input type="text" [formControl]="newTeamNameControl" placeholder="Team Name...">
+    <button class="action-btn" (click)="createNewTeam()" [disabled]="newTeamNameControl.invalid">
+      Save
+    </button>
+  </div>
+  }
+
+  <main class="teams-grid">
+    @if (teamsService.isLoading()) { <div class="status-msg">Loading...</div> }
+    
+    @else {
+      @for (team of teamsService.myTeams(); track team.id) {
+        <div class="team-card">
+          <div class="card-top">
+            <h3>{{ team.name }}</h3>
+            <span class="icon">🏢</span>
+          </div>
+          
+          <div class="card-info">{{ team.members_count || 0 }} Members</div>
+          
+          <div class="card-actions">
+            <button class="secondary-btn" (click)="openAddMemberModal(team.id)">
+               Add Member 👤
+            </button>
+            
+            <a class="enter-btn" [routerLink]="['/projects', team.id]">
+              View Projects ➜
+            </a>
+          </div>
+        </div>
+      }
+    }
+  </main>
+
+  @if (addingMemberToTeamId()) {
+    <div class="modal-overlay" (click)="closeAddMemberModal()">
+      <div class="modal-box" (click)="$event.stopPropagation()"> <h2>Add Team Member</h2>
+        <p style="color: var(--text-muted); margin-bottom: 15px;">Choose a user to join the team:</p>
+
+        <select [formControl]="selectedMemberId" class="custom-select" style="width: 100%; margin-bottom: 20px;">
+          <option [ngValue]="null" disabled>Select User...</option>
+          @for (user of teamsService.allUsers(); track user.id) {
+            <option [ngValue]="user.id">{{ user.name }} ({{ user.email }})</option>
+          }
+        </select>
+
+        <div class="modal-actions">
+          <button class="cancel-btn" (click)="closeAddMemberModal()">Cancel</button>
+          <button class="action-btn" (click)="submitAddMember()" [disabled]="selectedMemberId.invalid">
+            Add User
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>

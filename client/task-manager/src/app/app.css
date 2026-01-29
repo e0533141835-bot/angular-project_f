@@ -1,0 +1,93 @@
+/* app.css - Dark Tech Style */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-app); 
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(15, 23, 42, 0.8); 
+  backdrop-filter: blur(10px); 
+  border-bottom: 1px solid var(--border);
+  padding: 0 30px;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary); 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.nav-links a:hover {
+  color: white;
+  background: rgba(255,255,255, 0.05);
+}
+
+.nav-links a.active-link {
+  color: white;
+  background: var(--bg-panel); 
+  border: 1px solid var(--border);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+}

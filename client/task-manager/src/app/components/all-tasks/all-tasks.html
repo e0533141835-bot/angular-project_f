@@ -1,0 +1,46 @@
+<div class="page-container">
+
+  <header class="tasks-header">
+    <h1>All My Tasks 📋</h1>
+
+    <div class="search-box">
+      <input type="text" [formControl]="searchControl" (input)="onSearch($event)" placeholder="Search tasks...">
+      <span class="search-icon">🔍</span>
+    </div>
+  </header>
+
+  <main class="tasks-grid">
+
+    @if (tasksService.isLoading()) {
+      <div class="loading-state">
+        <p style="color: white; text-align: center;">Loading tasks... ⏳</p>
+      </div>
+    }
+
+    @else {
+      @for (task of filteredTasks(); track task.id) {
+        <div class="task-card status-{{task.status}}">
+          
+          <div class="card-top">
+            <h3>{{ task.title }}</h3>
+            <a [routerLink]="['/projects', task.projectId, 'tasks']" class="link-btn">
+              Go to Project ➜
+            </a>
+          </div>
+          
+          <p class="desc">{{ task.description || 'No description provided.' }}</p>
+          
+          <div class="meta-info">
+            <span class="badge priority-{{task.priority}}">{{ task.priority }}</span>
+            <span class="date">📅 {{ (task.dueDate || $any(task).due_date) | date:'dd/MM' }}</span>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <p>No tasks found. 🌴</p>
+        </div>
+      }
+    }
+
+  </main>
+</div>

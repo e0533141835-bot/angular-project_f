@@ -1,0 +1,27 @@
+<div class="app-container">
+  @if (authService.currentUser()) {
+  <nav class="navbar">
+
+    <a routerLink="/teams" class="nav-brand">Task Manager 🚀</a>
+
+  <div class="nav-links">
+      <a routerLink="/teams" routerLinkActive="active-link">My Teams</a>
+      <a routerLink="/all-projects" routerLinkActive="active-link">All Projects</a>
+      
+      <a routerLink="/all-tasks" routerLinkActive="active-link">All Tasks</a>
+    </div>
+    <div class="nav-user">
+      <span class="user-name">
+        hi, {{ authService.currentUser()?.name }}
+      </span>
+      <button class="logout-btn" (click)="authService.logout()">logout</button>
+    </div>
+
+  </nav>
+  }
+
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

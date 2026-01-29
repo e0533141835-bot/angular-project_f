@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg-app: #0f172a;     
+  --bg-panel: #1e293b;   
+  --bg-input: #334155; 
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --primary: #6366f1;      
+  --primary-hover: #4f46e5;
+  --border: #334155;
+  --danger: #ef4444;
+  --success: #10b981;
+}
+
+body {
+  margin: 0;
+  font-family: 'Heebo', sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  direction: ltr;
+  overflow-x: hidden;
+}
+
+.action-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); 
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.action-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.search-box {
+  position: relative;
+  width: 320px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 40px; 
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #253045;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+select.custom-select {
+  appearance: none; 
+  background-color: var(--bg-input);
+  color: white;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  padding-right: 30px; 
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+  
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 14px;
+}
+
+select.custom-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+a { text-decoration: none; color: inherit; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-app); }
+::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }

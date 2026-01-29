@@ -1,0 +1,50 @@
+<div class="page-container">
+
+  <header class="projects-header">
+    <h1>Projects 🚀</h1>
+    <button (click)="openCreate()" class="action-btn">
+      New Project ➕
+    </button>
+  </header>
+
+  @if (projectsService.isLoading()) { <p>Loading...</p> }
+  @else {
+    <div class="projects-grid">
+      @for (project of teamProjects(); track project.id) {
+        
+        <div class="project-card" [routerLink]="['/projects', project.id, 'tasks']">
+          
+          <div class="card-header-row">
+            <h3>{{ project.name }}</h3>
+            
+            <div class="card-actions">
+              <button class="icon-btn edit-btn" (click)="openEdit(project, $event)" title="Edit">✏️</button>
+              <button class="icon-btn delete-btn" (click)="deleteProject(project, $event)" title="Delete">🗑️</button>
+            </div>
+          </div>
+
+          <p>{{ project.description || 'No description' }}</p>
+          <div class="team-badge">Team #{{ project.team_id }}</div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (isCreateOpen()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <form [formGroup]="projectForm" class="modal-box" (ngSubmit)="saveProject()" (click)="$event.stopPropagation()">
+        <h2>{{ editingProjectId() ? 'Edit Project ✏️' : 'New Project ✨' }}</h2>
+        
+        <input type="text" formControlName="name" placeholder="Project Name">
+        <textarea formControlName="description" placeholder="Description"></textarea>
+        
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="action-btn" [disabled]="projectForm.invalid">
+            {{ editingProjectId() ? 'Save Changes' : 'Create' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+</div>
