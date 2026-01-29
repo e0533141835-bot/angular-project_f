@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://tasks-teacher-server.onrender.com/api'
+  apiUrl: 'https://angular-project-tasks-client.onrender.com/api'
 
 };
