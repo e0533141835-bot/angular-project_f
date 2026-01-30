@@ -22,20 +22,23 @@ export class AuthService {
       }
     }
   }
-  login(user: User) {
+login(user: User) {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, user).pipe(
       tap((response) => {
-        if (response.token) {
+        // התיקון: הוספנו בדיקה ש-response קיים לפני שניגשים ל-token
+        if (response && response.token) { 
           this.saveToken(response.token);
           this.currentUser.set(response.user);
         }
       })
     );
   }
+
   register(user: User) {
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, user).pipe(
       tap((response) => {
-        if (response.token) {
+        // אותו תיקון גם כאן
+        if (response && response.token) {
           this.saveToken(response.token);
           this.currentUser.set(response.user);
         }
