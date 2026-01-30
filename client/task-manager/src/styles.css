@@ -105,3 +105,28 @@ a { text-decoration: none; color: inherit; }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-app); }
 ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+
+/* === Validation Styles === */
+
+/* טקסט השגיאה */
+.error-msg {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: block;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* מסגרת אדומה לשדה שגוי שנגעו בו */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: var(--danger) !important;
+  background-color: rgba(239, 68, 68, 0.05); /* רקע אדמדם עדין */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

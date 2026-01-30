@@ -13,11 +13,25 @@
       <div class="form-group">
         <label>Email Address</label>
         <input type="email" formControlName="email" placeholder="name@company.com">
+        
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <span class="error-msg">
+            @if (loginForm.get('email')?.hasError('required')) { Email is required }
+            @if (loginForm.get('email')?.hasError('email')) { Invalid email address }
+          </span>
+        }
       </div>
 
       <div class="form-group">
         <label>Password</label>
         <input type="password" formControlName="password" placeholder="••••••••">
+        
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <span class="error-msg">
+            @if (loginForm.get('password')?.hasError('required')) { Password is required }
+            @if (loginForm.get('password')?.hasError('minlength')) { Password must be at least 6 chars }
+          </span>
+        }
       </div>
 
       <button type="submit" class="action-btn" [disabled]="!loginForm.valid" style="width: 100%; justify-content: center;">Sign In</button>

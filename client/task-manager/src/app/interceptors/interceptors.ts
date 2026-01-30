@@ -17,8 +17,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
-  const toast = inject(ToastService); // <--- הזרקה
-
+  const toast = inject(ToastService);
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
 
