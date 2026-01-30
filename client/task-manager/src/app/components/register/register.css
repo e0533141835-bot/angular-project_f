@@ -1,66 +1,85 @@
-/* Container centered in the page */
+/* =========================================================
+   1. הגדרות כלליות לכרטיס ולרקע
+   ========================================================= */
 .auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
   padding: 20px;
 }
 
 .auth-card {
-  background: var(--bg-panel); 
+  background-color: var(--bg-panel); /* רקע כהה לכרטיס */
   width: 100%;
   max-width: 420px;
   border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border);
-  overflow: hidden; 
-}
-
-.auth-tabs {
-  display: flex;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid var(--border);
-}
-
-.tab {
-  flex: 1; 
-  text-align: center;
-  padding: 16px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid transparent; 
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.tab:hover {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-main);
-}
-
-.active-tab {
-  color: var(--primary); 
-  border-bottom-color: var(--primary); 
-  background: linear-gradient(to top, rgba(59, 130, 246, 0.1), transparent);
+  overflow: hidden;
 }
 
 h2 {
   text-align: center;
-  margin: 30px 0 10px;
+  margin: 10px 0 20px;
   color: var(--text-main);
   font-weight: 300;
   font-size: 1.8rem;
 }
 
 form {
-  padding: 30px;
+  padding: 0 30px 30px;
 }
 
+/* =========================================================
+   2. עיצוב הטאבים (Gmail Style) - נקי ועם קו למטה
+   ========================================================= */
+
+/* המיכל של הטאבים */
+.auth-tabs {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #334155; /* קו אפור דק לכל הרוחב */
+  margin-bottom: 30px;
+  background: transparent; /* חשוב: בלי רקע! */
+}
+
+/* עיצוב טאב רגיל (לא פעיל) */
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 15px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #94a3b8; /* אפור */
+  text-decoration: none;
+  
+  /* שומר מקום לקו כדי שהטקסט לא יקפוץ */
+  border-bottom: 4px solid transparent; 
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: #e2e8f0; /* בהובר נהיה לבן */
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* --- הטאב הפעיל (הקו הכחול) --- */
+.active-tab {
+  color: #818cf8 !important; /* תכלת-סגול בוהק */
+  font-weight: 600;
+  
+  /* הקו התחתון - עבה וברור */
+  border-bottom: 4px solid #818cf8 !important;
+  
+  /* אפקט זוהר עדין למטה */
+  box-shadow: 0 4px 10px -2px rgba(99, 102, 241, 0.5);
+}
+
+/* =========================================================
+   3. עיצוב שדות הקלט (Inputs) - כהים
+   ========================================================= */
 .form-group {
   margin-bottom: 20px;
 }
@@ -69,51 +88,44 @@ label {
   display: block;
   margin-bottom: 8px;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
 input {
   width: 100%;
   padding: 12px 16px;
+  background-color: var(--bg-input); /* הרקע הכהה של האינפוט */
   border: 1px solid var(--border);
-  border-radius: 6px;
-  color: white;
+  border-radius: 8px;
+  color: var(--text-main); /* טקסט לבן */
   font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 input:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: var(--primary); /* מסגרת כחולה בפוקוס */
+  background-color: #253045;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
+/* =========================================================
+   4. כפתורים ופוטר
+   ========================================================= */
 button[type="submit"] {
+  /* אם יש לך מחלקה action-btn זה יקבל את העיצוב משם, אם לא - זה הגיבוי */
   width: 100%;
-  padding: 14px;
-  background: var(--primary);
+  padding: 12px;
+  background-color: var(--primary);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
   margin-top: 10px;
-}
-
-button[type="submit"]:hover {
-  background: #2563eb;
-  box-shadow: 0 0 15px var(--primary-glow);
-  transform: translateY(-1px);
-}
-
-button:disabled {
-  background: #475569;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
 .auth-footer {

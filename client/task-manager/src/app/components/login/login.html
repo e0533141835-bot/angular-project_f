@@ -1,7 +1,7 @@
 <div class="auth-container">
   <div class="auth-card">
     
-    <div class="auth-tabs">
+   <div class="auth-tabs">
       <a routerLink="/login" routerLinkActive="active-tab" class="tab">Sign In</a>
       <a routerLink="/register" routerLinkActive="active-tab" class="tab">Sign Up</a>
     </div>
@@ -20,11 +20,11 @@
         <input type="password" formControlName="password" placeholder="••••••••">
       </div>
 
-      <button type="submit" [disabled]="!loginForm.valid">Sign In</button>
+      <button type="submit" class="action-btn" [disabled]="!loginForm.valid" style="width: 100%; justify-content: center;">Sign In</button>
       
-      <p class="auth-footer">
+      <div class="auth-footer">
         Don't have an account? <a routerLink="/register">Sign up here</a>
-      </p>
+      </div>
     </form>
   </div>
 </div>

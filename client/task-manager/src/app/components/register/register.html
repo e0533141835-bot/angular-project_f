@@ -25,11 +25,11 @@
         <input type="password" formControlName="password" placeholder="••••••••">
       </div>
 
-      <button type="submit" [disabled]="!registerForm.valid">Sign Up</button>
+      <button type="submit" class="action-btn" [disabled]="!registerForm.valid" style="width: 100%; justify-content: center;">Sign Up</button>
       
-      <p class="auth-footer">
+      <div class="auth-footer">
         Already have an account? <a routerLink="/login">Sign in here</a>
-      </p>
+      </div>
     </form>
   </div>
 </div>
