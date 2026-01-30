@@ -6,6 +6,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Task } from '../../models/types.model';
 import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommentsService } from '../../services/comments.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-task-list',

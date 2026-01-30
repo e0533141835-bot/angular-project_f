@@ -3,6 +3,7 @@ import { TeamsService } from '../../services/teams.service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePipe, JsonPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 @Component({
   selector: 'app-team-list',
   standalone: true,
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class TeamList implements OnInit {
   public teamsService = inject(TeamsService);
+  private toast = inject(ToastService);
   newTeamNameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
   selectedMemberId = new FormControl<number | null>(null, Validators.required);
   isCreateOpen = signal(false);
@@ -27,10 +29,11 @@ export class TeamList implements OnInit {
     const name = this.newTeamNameControl.value!;
     this.teamsService.addTeam(name).subscribe({
       next: () => {
+        this.toast.success('הצוות נוצר בהצלחה! 🎉')
         this.newTeamNameControl.reset();
         this.isCreateOpen.set(false);
       },
-      error: () => alert('שגיאה ביצירת הצוות')
+     error: () => this.toast.error('שגיאה ביצירת הצוות')
     });
   }
   openAddMemberModal(teamId: string) {
