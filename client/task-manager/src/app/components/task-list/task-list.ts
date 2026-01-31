@@ -6,7 +6,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Task } from '../../models/types.model';
 import { CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommentsService } from '../../services/comments.service';
-import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-task-list',
@@ -69,7 +68,6 @@ export class TaskList implements OnInit {
     this.editingTaskId.set(task.id);
     this.selectedTask.set(task);
 
-    // טיפול בתאריך (due_date מהשרת או dueDate מהלוקאלי)
     const serverDate = (task as any).due_date || task.dueDate;
     let formattedDate = '';
     if (serverDate) {
@@ -105,7 +103,6 @@ export class TaskList implements OnInit {
     const taskId = this.editingTaskId();
 
     if (taskId) {
-      // --- עדכון משימה ---
       const updatePayload = {
         title: formVal.title!,
         description: formVal.description!,
@@ -120,7 +117,6 @@ export class TaskList implements OnInit {
       });
 
     } else {
-      // --- יצירת משימה ---
       this.tasksService.addTask(
         currentProjectId,
         formVal.title!,

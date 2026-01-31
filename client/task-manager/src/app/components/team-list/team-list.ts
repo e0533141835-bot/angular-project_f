@@ -3,7 +3,7 @@ import { TeamsService } from '../../services/teams.service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePipe, JsonPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ToastService } from '../../services/toast.service';
+import { ToastsService } from '../../services/toasts.service';
 @Component({
   selector: 'app-team-list',
   standalone: true,
@@ -13,7 +13,7 @@ import { ToastService } from '../../services/toast.service';
 })
 export class TeamList implements OnInit {
   public teamsService = inject(TeamsService);
-  private toast = inject(ToastService);
+  private toast = inject(ToastsService);
   newTeamNameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
   selectedMemberId = new FormControl<number | null>(null, Validators.required);
   isCreateOpen = signal(false);

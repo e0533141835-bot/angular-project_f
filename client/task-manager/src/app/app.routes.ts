@@ -7,7 +7,7 @@ import { authGuard } from './guards/auth.guard';
 import { TaskList } from './components/task-list/task-list';
 import { AllProjectsComponent } from './components/all-projects/all-projects';
 import { AllTasksComponent } from './components/all-tasks/all-tasks';
-import { HomeComponent } from './components/home/home'; // <--- ייבוא החדש
+import { HomeComponent } from './components/home/home'; 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 

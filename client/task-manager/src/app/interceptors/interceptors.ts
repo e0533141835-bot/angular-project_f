@@ -2,8 +2,7 @@ import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
-import { ToastService } from '../services/toast.service'; // <--- ייבוא
-
+import { ToastsService } from '../services/toasts.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = sessionStorage.getItem('token');
@@ -17,30 +16,30 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
-  const toast = inject(ToastService);
+  const toast = inject(ToastsService);
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
 
       if (error.status === 401) {
-         toast.error('החיבור פג תוקף, אנא התחבר מחדש 🔒');
+         toast.error('החיבור פג תוקף, אנא התחבר מחדש ');
         sessionStorage.removeItem('token');
         router.navigate(['/register']);
       }
 
       else if (error.status === 403) {
-         toast.error('אין לך הרשאות לבצע פעולה זו! ✋');
+         toast.error('אין לך הרשאות לבצע פעולה זו! ');
       }
 
       else if (error.status === 404) {
-        toast.info('הנתון לא נמצא במערכת 🔍');
+        toast.info('הנתון לא נמצא במערכת ');
       }
 
       else if (error.status === 500) {
-        toast.error('תקלה בשרת, נסה שוב מאוחר יותר 🔥');
+        toast.error('תקלה בשרת, נסה שוב מאוחר יותר ');
       }
 
       else if (error.status === 0) {
-        toast.error('אין תקשורת. בדוק את האינטרנט שלך ⚠️');
+        toast.error('אין תקשורת. בדוק את האינטרנט שלך ');
       }
 
       return throwError(() => error);
