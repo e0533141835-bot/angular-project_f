@@ -13,7 +13,7 @@ export interface AuthResponse {
 export interface Team {
   id: string;
   name: string;
-  members_count?: number;
+  members_count: number;
   ownerId?: string;
 }
 
